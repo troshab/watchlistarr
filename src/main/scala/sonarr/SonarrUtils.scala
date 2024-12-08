@@ -89,7 +89,7 @@ trait SonarrUtils extends SonarrConversions {
     for {
       response     <- EitherT(client.httpRequest(Method.GET, urlWithParams, Some(apiKey)))
       maybeDecoded <- EitherT.pure[IO, Throwable](response.as[T])
-      decoded <- EitherT.fromOption[IO](maybeDecoded.toOption, new Throwable("Unable to decode response from Radarr"))
+      decoded <- EitherT.fromOption[IO](maybeDecoded.toOption, new Throwable("Unable to decode response from Sonarr"))
     } yield decoded
   }
 
